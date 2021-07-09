@@ -6335,19 +6335,19 @@ __nccwpck_require__.r(__webpack_exports__);
 
 try {
     // `who-to-greet` input defined in action metadata file
-    const repoReference = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("repository");
-    const folderReference = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("directory");
-    const commitReference = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("ref");
+    const repoReference = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("repository");
+    const folderReference = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("directory");
+    const commitReference = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("ref");
     console.log(`${repoReference} ${folderReference} ${commitReference}!`);
-    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)("newer", false);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("newer", false);
     // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify((_actions_github__WEBPACK_IMPORTED_MODULE_1___default().context.payload), undefined, 2);
+    const payload = JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload, undefined, 2);
     console.log(`The event payload: ${payload}`);
 }
 catch (error) {
     console.log(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed);
     console.log(error);
-    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }
 
 })();
