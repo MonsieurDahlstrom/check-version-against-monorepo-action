@@ -7,14 +7,11 @@
   "author": "Mathias Dahlström",
   "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "typescript": "^4.3.5"
-  },
   "dependencies": {
     "@actions/core": "^1.4.0",
     "@actions/github": "^5.0.0"
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json"
+    "build": "ncc build src/index.ts --license licenses.txt"
   }
 }

@@ -7,7 +7,6 @@ try {
   const folderReference = core.getInput("directory");
   const commitReference = core.getInput("ref");
   console.log(`${repoReference} ${folderReference} ${commitReference}!`);
-  const time = new Date().toTimeString();
   core.setOutput("newer", false);
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2);
