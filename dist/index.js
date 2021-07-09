@@ -7,8 +7,10 @@ var core_1 = __importDefault(require("@actions/core"));
 var github_1 = __importDefault(require("@actions/github"));
 try {
     // `who-to-greet` input defined in action metadata file
+    var repoReference = core_1.default.getInput("repository");
+    var folderReference = core_1.default.getInput("directory");
     var commitReference = core_1.default.getInput("ref");
-    console.log("Hello " + commitReference + "!");
+    console.log(repoReference + " " + folderReference + " " + commitReference + "!");
     var time = new Date().toTimeString();
     core_1.default.setOutput("newer", false);
     // Get the JSON webhook payload for the event that triggered the workflow
