@@ -6345,6 +6345,8 @@ try {
     console.log(`The event payload: ${payload}`);
 }
 catch (error) {
+    console.log((_actions_core__WEBPACK_IMPORTED_MODULE_0___default()));
+    console.log(error);
     _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(error.message);
 }
 
