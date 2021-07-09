@@ -1,8 +1,14 @@
 name: "Hello World"
 description: "Greet someone and record the time"
 inputs:
-  ref: # id of input
-    description: "version tag to check"
+  repository:
+    description: "the repo where the packages resides"
+    required: true
+  directory:
+    description: "the folder where package.json resides that we want to checked for versions"
+    required: true
+  ref:
+    description: "the tag ref to checkout inside the repo"
     required: true
 outputs:
   newer: # id of output
