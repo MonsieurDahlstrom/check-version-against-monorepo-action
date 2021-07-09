@@ -1,21 +1,31 @@
-# Hello world javascript action
+# Check a package.jaon against released versions within a repo.
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action allows monorepos to validate different package.json version against already published versions in a registry.
 
 ## Inputs
 
-## `who-to-greet`
+## `repository`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The name of the person to greet.
+
+## `directory`
+
+**Required** The name of the person to greet.
+
+## `ref`
+
+**Required** The name of the person to greet.
 
 ## Outputs
 
-## `time`
+## `newer`
 
-The time we greeted you.
+if package.json was never then what is publihed in the registry.
 
 ## Example usage
 
-uses: actions/hello-world-javascript-action@v1.1
+uses: actions/check-version-against-monorepo-action@main
 with:
-who-to-greet: 'Mona the Octocat'
+repository: 'MonsieurDahlstrom/workflow-test'
+directory: 'dist'
+ref: 'refs/tags/v0.4.100-alpha.2.0'
