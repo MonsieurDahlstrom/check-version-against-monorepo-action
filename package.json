@@ -16,5 +16,8 @@
   "scripts": {
     "start": "$(yarn bin ncc) run src/index.ts",
     "build": "$(yarn bin ncc) build src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^16.3.0"
   }
 }
