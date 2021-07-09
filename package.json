@@ -1,0 +1,17 @@
+{
+  "name": "check-version-against-monorepo-action",
+  "version": "0.0.1",
+  "description": "Check package.json against monorepo released packages",
+  "main": "dist/index.js",
+  "repository": "git+https://github.com/NoordRights/check-version-against-monorepo-action",
+  "author": "Mathias Dahlström",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0"
+  }
+}

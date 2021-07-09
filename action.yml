@@ -1,0 +1,12 @@
+name: "Hello World"
+description: "Greet someone and record the time"
+inputs:
+  ref: # id of input
+    description: "version tag to check"
+    required: true
+outputs:
+  newer: # id of output
+    description: "true if package is newer then latest package of the same name in the repository"
+runs:
+  using: "node12"
+  main: "dist/index.js"
