@@ -14,7 +14,7 @@ async function main() {
     await RetriveLatestPublishedVersion({
       repoOwner: repoReference[0],
       repoName: repoReference[1],
-      packageName: nameAndVersion.name,
+      packageName: nameAndVersion.name.split("/").reverse()[0],
     });
     // Get the JSON webhook payload for the event that triggered the workflow
     //const payload = JSON.stringify(github.context.payload, undefined, 2);
