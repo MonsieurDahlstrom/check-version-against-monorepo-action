@@ -10,6 +10,9 @@ inputs:
   ref:
     description: "the tag ref to checkout inside the repo"
     required: true
+  token:
+    description: "github token with access rights to the repo"
+    required: true
 outputs:
   newer: # id of output
     description: "true if package is newer then latest package of the same name in the repository"
