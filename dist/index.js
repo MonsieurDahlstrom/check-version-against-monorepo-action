@@ -592,8 +592,6 @@ try {
     const folderReference = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("directory");
     const commitReference = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("ref");
     console.log(`${repoReference} ${folderReference} ${commitReference}!`);
-    const files = fs__WEBPACK_IMPORTED_MODULE_1___default().readFileSync("/");
-    console.log(files);
     const fileBuffer = fs__WEBPACK_IMPORTED_MODULE_1___default().readFileSync(path__WEBPACK_IMPORTED_MODULE_2___default().join(folderReference, "package.json"));
     const packageDescription = JSON.parse(fileBuffer.toString("utf8"));
     console.log(packageDescription);
