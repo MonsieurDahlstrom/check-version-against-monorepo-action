@@ -5606,6 +5606,15 @@ var core = __nccwpck_require__(186);
 // EXTERNAL MODULE: ./node_modules/graphql-request/dist/index.js
 var dist = __nccwpck_require__(476);
 ;// CONCATENATED MODULE: ./src/graphql.ts
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 
 
 const endpoint = "https://api.github.com/graphql";
@@ -5625,19 +5634,21 @@ const query = dist.gql `
   }
 `;
 function RetriveLatestPublishedVersion({ repoOwner, repoName, packageName, }) {
-    console.log("RetriveLatestPublishedVersion", token);
-    const graphQLClient = new dist.GraphQLClient(endpoint, {
-        headers: {
-            authorization: `bearer ${token}`,
-        },
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log("RetriveLatestPublishedVersion", token);
+        const graphQLClient = new dist.GraphQLClient(endpoint, {
+            headers: {
+                authorization: `bearer ${token}`,
+            },
+        });
+        const variables = {
+            name: repoName,
+            owner: repoOwner,
+            packageName,
+        };
+        const response = graphQLClient.request(query, variables);
+        console.log(response);
     });
-    const variables = {
-        name: repoName,
-        owner: repoOwner,
-        packageName,
-    };
-    const response = graphQLClient.request(query, variables);
-    console.log(response);
 }
 
 // EXTERNAL MODULE: external "fs"
@@ -5657,29 +5668,43 @@ function readPackageJson() {
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
-
-
-
-try {
-    // `who-to-greet` input defined in action metadata file
-    //default state is false
-    core.setOutput("newer", false);
-    const repoReference = core.getInput("repository").split("/");
-    const commitReference = core.getInput("ref");
-    console.log(`${repoReference} ${commitReference}!`);
-    const nameAndVersion = readPackageJson();
-    RetriveLatestPublishedVersion({
-        repoOwner: repoReference[0],
-        repoName: repoReference[1],
-        packageName: nameAndVersion.name,
+var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-    // Get the JSON webhook payload for the event that triggered the workflow
-    //const payload = JSON.stringify(github.context.payload, undefined, 2);
-    //console.log(`The event payload: ${payload}`);
+};
+
+
+
+function main() {
+    return src_awaiter(this, void 0, void 0, function* () {
+        try {
+            // `who-to-greet` input defined in action metadata file
+            //default state is false
+            core.setOutput("newer", false);
+            const repoReference = core.getInput("repository").split("/");
+            const commitReference = core.getInput("ref");
+            console.log(`${repoReference} ${commitReference}!`);
+            const nameAndVersion = readPackageJson();
+            yield RetriveLatestPublishedVersion({
+                repoOwner: repoReference[0],
+                repoName: repoReference[1],
+                packageName: nameAndVersion.name,
+            });
+            // Get the JSON webhook payload for the event that triggered the workflow
+            //const payload = JSON.stringify(github.context.payload, undefined, 2);
+            //console.log(`The event payload: ${payload}`);
+        }
+        catch (error) {
+            core.setFailed(error.message);
+        }
+    });
 }
-catch (error) {
-    core.setFailed(error.message);
-}
+main();
 
 })();
 

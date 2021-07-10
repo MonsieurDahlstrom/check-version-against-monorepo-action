@@ -20,7 +20,7 @@ const query = gql`
   }
 `;
 
-export function RetriveLatestPublishedVersion({
+export async function RetriveLatestPublishedVersion({
   repoOwner,
   repoName,
   packageName,
