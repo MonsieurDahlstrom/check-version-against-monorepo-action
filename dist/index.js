@@ -574,35 +574,45 @@ module.exports = require("path");;
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+// ESM COMPAT FLAG
 __nccwpck_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(186);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(747);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(622);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);
 
+// EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
+var core = __nccwpck_require__(186);
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(747);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
+// EXTERNAL MODULE: external "path"
+var external_path_ = __nccwpck_require__(622);
+var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
+;// CONCATENATED MODULE: ./src/repository.ts
+
+
+
+function readPackageJson() {
+    const fileBuffer = external_fs_default().readFileSync(external_path_default().join(core.getInput("directory"), "package.json"));
+    const { name, version } = JSON.parse(fileBuffer.toString("utf8"));
+    return { name, version };
+}
+
+;// CONCATENATED MODULE: ./src/index.ts
 
 
 try {
     // `who-to-greet` input defined in action metadata file
     //default state is false
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("newer", false);
-    const repoReference = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("repository");
-    const folderReference = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("directory");
-    const commitReference = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("ref");
-    console.log(`${repoReference} ${folderReference} ${commitReference}!`);
-    const fileBuffer = fs__WEBPACK_IMPORTED_MODULE_1___default().readFileSync(path__WEBPACK_IMPORTED_MODULE_2___default().join(folderReference, "package.json"));
-    const packageDescription = JSON.parse(fileBuffer.toString("utf8"));
-    console.log(packageDescription);
+    core.setOutput("newer", false);
+    const repoReference = core.getInput("repository");
+    const commitReference = core.getInput("ref");
+    console.log(`${repoReference} ${commitReference}!`);
+    const nameAndVersion = readPackageJson();
+    console.log(nameAndVersion);
     // Get the JSON webhook payload for the event that triggered the workflow
     //const payload = JSON.stringify(github.context.payload, undefined, 2);
     //console.log(`The event payload: ${payload}`);
 }
 catch (error) {
-    console.log(_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed);
-    console.log(error);
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
+    core.setFailed(error.message);
 }
 
 })();
