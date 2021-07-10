@@ -29,7 +29,6 @@ export async function RetriveLatestPublishedVersion({
   repoName: string;
   packageName: string;
 }) {
-  console.log("RetriveLatestPublishedVersion", token);
   const graphQLClient = new GraphQLClient(endpoint, {
     headers: {
       authorization: `bearer ${token}`,
@@ -40,6 +39,8 @@ export async function RetriveLatestPublishedVersion({
     owner: repoOwner,
     packageName,
   };
+  console.log("RetriveLatestPublishedVersion", variables);
+
   const response = await graphQLClient.request(query, variables);
   console.log(response);
 }
