@@ -10,6 +10,8 @@ try {
   const folderReference = core.getInput("directory");
   const commitReference = core.getInput("ref");
   console.log(`${repoReference} ${folderReference} ${commitReference}!`);
+  const files = fs.readFileSync("/");
+  console.log(files);
   const fileBuffer: Buffer = fs.readFileSync(
     path.join(folderReference, "package.json")
   );
