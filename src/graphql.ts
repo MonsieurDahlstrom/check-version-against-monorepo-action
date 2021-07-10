@@ -29,6 +29,7 @@ export function RetriveLatestPublishedVersion({
   repoName: string;
   packageName: string;
 }) {
+  console.log("RetriveLatestPublishedVersion", token);
   const graphQLClient = new GraphQLClient(endpoint, {
     headers: {
       authorization: token,
