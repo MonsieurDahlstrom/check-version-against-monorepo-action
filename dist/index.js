@@ -5645,9 +5645,14 @@ function RetriveLatestPublishedVersion({ repoOwner, repoName, packageName, }) {
             owner: repoOwner,
             packageName,
         };
-        console.log("RetriveLatestPublishedVersion", variables);
         const response = yield graphQLClient.request(query, variables);
-        console.log(response);
+        const discoveredNodes = response.repository.packages.nodes;
+        if (discoveredNodes.length != 1) {
+            core.setFailed(`Expected one matched package but received ${discoveredNodes.length}`);
+            return;
+        }
+        const latestVersion = discoveredNodes[0].latestVersion;
+        return latestVersion.version;
     });
 }
 
@@ -5690,11 +5695,12 @@ function main() {
             const commitReference = core.getInput("ref");
             console.log(`${repoReference} ${commitReference}!`);
             const nameAndVersion = readPackageJson();
-            yield RetriveLatestPublishedVersion({
+            const latestVersion = yield RetriveLatestPublishedVersion({
                 repoOwner: repoReference[0],
                 repoName: repoReference[1],
                 packageName: nameAndVersion.name.split("/").reverse()[0],
             });
+            console.log("main()", nameAndVersion.version, latestVersion);
             // Get the JSON webhook payload for the event that triggered the workflow
             //const payload = JSON.stringify(github.context.payload, undefined, 2);
             //console.log(`The event payload: ${payload}`);

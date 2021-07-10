@@ -11,11 +11,13 @@ async function main() {
     const commitReference = core.getInput("ref");
     console.log(`${repoReference} ${commitReference}!`);
     const nameAndVersion = readPackageJson();
-    await RetriveLatestPublishedVersion({
+    const latestVersion = await RetriveLatestPublishedVersion({
       repoOwner: repoReference[0],
       repoName: repoReference[1],
       packageName: nameAndVersion.name.split("/").reverse()[0],
     });
+    console.log("main()", nameAndVersion.version, latestVersion);
+
     // Get the JSON webhook payload for the event that triggered the workflow
     //const payload = JSON.stringify(github.context.payload, undefined, 2);
     //console.log(`The event payload: ${payload}`);
