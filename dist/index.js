@@ -5628,7 +5628,7 @@ function RetriveLatestPublishedVersion({ repoOwner, repoName, packageName, }) {
     console.log("RetriveLatestPublishedVersion", token);
     const graphQLClient = new dist.GraphQLClient(endpoint, {
         headers: {
-            authorization: token,
+            authorization: `bearer ${token}`,
         },
     });
     const variables = {

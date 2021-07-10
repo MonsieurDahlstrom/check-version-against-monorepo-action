@@ -32,7 +32,7 @@ export function RetriveLatestPublishedVersion({
   console.log("RetriveLatestPublishedVersion", token);
   const graphQLClient = new GraphQLClient(endpoint, {
     headers: {
-      authorization: token,
+      authorization: `bearer ${token}`,
     },
   });
   const variables = {
