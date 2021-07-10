@@ -40,6 +40,6 @@ export async function RetriveLatestPublishedVersion({
     owner: repoOwner,
     packageName,
   };
-  const response = graphQLClient.request(query, variables);
+  const response = await graphQLClient.request(query, variables);
   console.log(response);
 }

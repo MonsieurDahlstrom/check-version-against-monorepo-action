@@ -5646,7 +5646,7 @@ function RetriveLatestPublishedVersion({ repoOwner, repoName, packageName, }) {
             owner: repoOwner,
             packageName,
         };
-        const response = graphQLClient.request(query, variables);
+        const response = yield graphQLClient.request(query, variables);
         console.log(response);
     });
 }
