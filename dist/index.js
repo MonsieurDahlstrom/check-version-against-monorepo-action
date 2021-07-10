@@ -5635,7 +5635,6 @@ const query = dist.gql `
 `;
 function RetriveLatestPublishedVersion({ repoOwner, repoName, packageName, }) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("RetriveLatestPublishedVersion", token);
         const graphQLClient = new dist.GraphQLClient(endpoint, {
             headers: {
                 authorization: `bearer ${token}`,
@@ -5646,6 +5645,7 @@ function RetriveLatestPublishedVersion({ repoOwner, repoName, packageName, }) {
             owner: repoOwner,
             packageName,
         };
+        console.log("RetriveLatestPublishedVersion", variables);
         const response = yield graphQLClient.request(query, variables);
         console.log(response);
     });
